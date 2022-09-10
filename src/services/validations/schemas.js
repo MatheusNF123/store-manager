@@ -1,8 +1,8 @@
-const Joi = require('joi');
+// const Joi = require('joi');
 
-const idSchema = Joi.object({
-  id: Joi.number().integer().min(1).required(),
-});
+// const idSchema = Joi.object({
+//   id: Joi.number().integer().min(1).required(),
+// });
   
 // const pointSchema = Joi.string().min(3).required();
 
@@ -16,7 +16,7 @@ const idSchema = Joi.object({
 //   endingAddress: pointSchema.invalid(Joi.ref('startingAddress')),
 //   waypoints: Joi.array().items(waypointSchema) });
 
-  module.exports = {
-    idSchema,
-    // addRequestTravelSchema,
-  };
+  // module.exports = {
+  //   idSchema,
+  //   // addRequestTravelSchema,
+  // };
