@@ -13,7 +13,13 @@ const findProductId = async (id) => {
     return { status: 200, message: result };
 };
 
+const registrationProduct = async (produto) => {
+  const result = await productModel.registrationProduct(produto);
+  return { status: 201, message: { id: result, ...produto } };
+};
+
 module.exports = {
   getAllProducts,
   findProductId,
+  registrationProduct,
 };
