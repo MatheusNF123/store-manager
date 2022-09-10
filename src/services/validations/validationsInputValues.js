@@ -1,14 +1,16 @@
 // const productModel = require('../../models/index');
+const { productValidation } = require('./schemas');
 
-// const validateParams = async (id) => {
-//   if (!id) {
-//     throw new Error({ status: 404, message: 'Product not found' });
-//   }
+const validateRegistrationProduct = (produto) => {
+  const { error } = productValidation.validate({ ...produto });
+  console.log(error.details[0].type);
+  let err = { status: 400, message: error.message };
+  if (error.details[0].type === 'any.required') throw err;
+  console.log('asdasd');
+  err = { status: 422, message: error.message };
+  if (error.details[0].type === 'string.min') throw err;
+}; 
 
-//   const result = await productModel.findProductId(id);
-//   return { status: 200, message: result };
-// };
-
-// module.exports = {
-//   validateParams,
-// };
+module.exports = {
+  validateRegistrationProduct,
+};
