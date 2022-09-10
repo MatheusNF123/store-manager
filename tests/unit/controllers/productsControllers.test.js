@@ -7,10 +7,14 @@ const { expect } = chai
 chai.use(sinonChai);
 
 const { productServices } = require("../../../src/services");
-const { allProduct } = require("./mocks/products.controller.mock");
+const {
+  allProduct,
+  produtoRegistrado,
+  produto,
+} = require("./mocks/products.controller.mock");
 const {productController} = require('../../../src/controllers')
 describe('Teste de unidade do passengerController', function () {
-  this.afterEach(function () {
+  afterEach(function () {
     sinon.restore();
   });
   it('listando todos os prodtos', async function () {
@@ -48,4 +52,21 @@ describe('Teste de unidade do passengerController', function () {
       // ''
     }
   })
+  it('cadastrando um produto', async function () {
+   
+      const req = {body: {name: 'ProdutoX'}};
+      const res = {};
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+    
+       sinon
+         .stub(productServices, "registrationProduct")
+         .resolves({ status: 201, message: produtoRegistrado });
+         await productController.productRegistration(req, res);
+        //  const result = await productServices.registrationProduct(produto);
+      expect(res.status).to.have.been.calledWith(201);
+      expect(res.json).to.have.been.calledWith(produtoRegistrado);
+
+  })
+  
  })

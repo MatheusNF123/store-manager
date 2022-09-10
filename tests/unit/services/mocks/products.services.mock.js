@@ -11,7 +11,12 @@ const allProduct = [
 
 const errorId = 999
 
+const produto = {
+  name: "ProdutoX",
+};
+
 module.exports = {
   allProduct,
   errorId,
+  produto,
 };

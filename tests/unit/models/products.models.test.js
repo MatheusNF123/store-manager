@@ -5,7 +5,11 @@ const connection = require('../../../src/models/connection')
 const { expect } = chai
 
 const { productModel } = require("../../../src/models");
-const {allProduct} = require('./mocks/products.model.mock')
+const {
+  allProduct,
+  produtoRegistrado,
+  produto,
+} = require("./mocks/products.model.mock");
 
 describe('Teste de unidade do productModel', function () {
   this.afterEach(function () {
@@ -20,5 +24,10 @@ describe('Teste de unidade do productModel', function () {
     sinon.stub(connection, "execute").resolves([[allProduct[0]]]);
     const result = await productModel.findProductId(1)
     expect(result).to.equal(allProduct[0]);
+  })
+  it('registrando um produto', async function () {
+    sinon.stub(connection, "execute").resolves([{insertId: 4}]);
+    const result = await productModel.registrationProduct(produto);
+    expect(result).to.equal(4);
   })
  })

@@ -5,7 +5,11 @@ const { expect } = chai;
 
 const { productServices } = require('../../../src/services')
 const { productModel } = require("../../../src/models");
-const { allProduct, errorId } = require("./mocks/products.services.mock");
+const {
+  allProduct,
+  errorId,
+  produto,
+} = require("./mocks/products.services.mock");
 describe("Teste de unidade do productServices", function () {
   this.afterEach(function () {
     sinon.restore();
@@ -30,5 +34,20 @@ describe("Teste de unidade do productServices", function () {
       const erroMock = { status: 404, message: "Product not found" };
       expect(error).to.deep.equal(erroMock);
       }
+  });
+  it("Bucando produto pelo id errado", async function () {
+    try {      
+      sinon.stub(productModel, "findProductId").resolves(undefined);
+      await productServices.findProductId(errorId);
+    }catch(error){
+      const erroMock = { status: 404, message: "Product not found" };
+      expect(error).to.deep.equal(erroMock);
+      }
+  });
+  it("registrando um produto", async function () {       
+    sinon.stub(productModel, "registrationProduct").resolves(4);
+    const result =  await productServices.registrationProduct(produto);
+    const mockObj = { status: 201, message: { id: 4, ...produto } };
+    expect(result).to.deep.equal(mockObj);      
   });
 });
