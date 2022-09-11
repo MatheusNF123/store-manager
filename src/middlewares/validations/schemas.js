@@ -8,6 +8,17 @@ const productValidation = Joi.object({
   name: Joi.string().min(5).required(),
 });
 
+// const salesProduct = Joi.object({
+//   productId: Joi.number().required(),
+//   quantity: Joi.number().min(1).required(),
+// });
+
+// const validSaleProduct = Joi.object({
+ const salesProductValidation = Joi.array().items({
+    productId: Joi.number().required(),
+    quantity: Joi.number().min(1).required(),
+  });
+// }); 
 // const pointSchema = Joi.string().min(3).required();
 
 // const waypointSchema = Joi.object({
@@ -24,4 +35,6 @@ const productValidation = Joi.object({
     idSchema,
     // addRequestTravelSchema,
     productValidation,
+    // validSaleProduct,
+    salesProductValidation,
   };
