@@ -17,40 +17,51 @@ describe('Teste de unidade do passengerController', function () {
   afterEach(function () {
     sinon.restore();
   });
-  it('listando todos os prodtos', async function () {
-    try {
-      
+  it('listando todos os prodtos', async function () {       
       const req = {};
       const res = {};
-      res.status = sinon.stub().returns();
-      res.json = sinon.stub().returns(allProduct);
+      res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+  
        sinon
          .stub(productServices, "getAllProducts")
          .resolves({ status: 200, message: allProduct });
-      await productController.product(req, res)
-      expect(res.status).to.have.been.calledWith(201);
+      await productController.product(req, res);
+      expect(res.status).to.have.been.calledWith(200);
       expect(res.json).to.have.been.calledWith(allProduct);
-    } catch (e) {
-      
-    }
+  
   })
-  it('listando os prodtos por id', async function () {
-    try {
+  it('listando os produtos por id', async function () {
+ 
       const obj = allProduct[0];
       const params = {id: 1}
       const req = { params };
       const res = {};
-      res.status = sinon.stub().returns();
-      res.json = sinon.stub().returns(obj);
+      res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+      const next = sinon.stub().returns();
        sinon
          .stub(productServices, 'findProductId')
          .resolves({ status: 200, message: obj });
-      await productController.productId(req, res)
-      expect(res.status).to.have.been.calledWith(201);
+      await productController.productId(req, res, next);
+      expect(res.status).to.have.been.calledWith(200);
       expect(res.json).to.have.been.calledWith(obj);
-    } catch (e) {
-      // ''
-    }
+   
+  })
+  it('testando a função next quando occore um erro ao buscar um produto por id', async function () {
+ 
+      const obj = allProduct[0];
+      const params = {id: 300}
+      const req = { params };
+      const res = {};
+      res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+    const next = sinon.stub().returns();
+    const erro = { status: 404, message: "Product not found" };
+       sinon.stub(productServices, "findProductId").throws(erro);
+      await productController.productId(req, res, next);
+      expect(next).to.have.been.calledWith(erro);
+   
   })
   it('cadastrando um produto', async function () {
    
