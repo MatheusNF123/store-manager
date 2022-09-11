@@ -9,13 +9,9 @@ const salesRegistration = async (req, res, next) => {
     next(error);
   }
 };
-const getAllSales = async (req, res, next) => {
-  try {
+const getAllSales = async (_req, res) => {
     const { status, message } = await saleServices.getAllSales();
     res.status(status).json(message);
-  } catch (error) {
-    next(error);
-  }
 };
 const saleId = async (req, res, next) => {
  try {

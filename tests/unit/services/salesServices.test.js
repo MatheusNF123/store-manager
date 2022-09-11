@@ -4,7 +4,7 @@ const { expect } = chai;
 
 const { saleServices } = require('../../../src/services')
 const { salesModel, productModel } = require("../../../src/models");
-const {fCall, mockSaleProduct, fCallError} = require("./mocks/sales.services.mock");
+const {fCall, mockSaleProduct, fCallError, mockAllSales, mockSaleID } = require("./mocks/sales.services.mock");
 describe("Teste de unidade do saleServices", function () {
   afterEach(function () {
     sinon.restore();
@@ -29,6 +29,40 @@ describe("Teste de unidade do saleServices", function () {
        expect(mockError.message).to.deep.equal(e.message);
     }
      
-    })
+  })
+  
+   it("buscando todas as vendas", async function () {
+     sinon.stub(salesModel, "getAllSales").resolves(mockAllSales);
+     const result = await saleServices.getAllSales();
+     const salesMocks = {
+       status: 200,
+       message: mockAllSales,
+     };
+     expect(result).to.deep.equal(salesMocks);
+   });
+   it("buscando as vendas por ID", async function () {
+     sinon.stub(salesModel, "findSaleId").resolves(mockSaleID);
+     const result = await saleServices.findSaleId(1);
+     const salesMocks = {
+       status: 200,
+       message: mockSaleID,
+     };
+     expect(result).to.deep.equal(salesMocks);
+   });
+  
+  it("buscando uma venda inexistente", async function () {
+    try {
+      sinon.stub(salesModel, "findSaleId").resolves([]);
+      await saleServices.findSaleId(999);       
+    } catch (e) {
+      const salesMocks = {
+        status: 404,
+        message: "Sale not found",
+      };
+      expect(e.message).to.deep.equal(salesMocks.message);
+      
+    }
+   });
+  
   
 });
