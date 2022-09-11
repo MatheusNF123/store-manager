@@ -18,7 +18,7 @@ const validateRegistrationsale = (req, _res, next) => {
     };
     throw err;
   }  
-  next(); //
+  next();
 };
 
 module.exports = {

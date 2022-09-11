@@ -19,7 +19,7 @@ const registrationProduct = async (produto) => {
   return { status: 201, message: { id: result, ...produto } };
 };
 
-module.exports = {
+module.exports = { //
   getAllProducts,
   findProductId,
   registrationProduct,

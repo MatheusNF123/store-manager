@@ -8,12 +8,6 @@ const productValidation = Joi.object({
   name: Joi.string().min(5).required(),
 });
 
-// const salesProduct = Joi.object({
-//   productId: Joi.number().required(),
-//   quantity: Joi.number().min(1).required(),
-// });
-
-// const validSaleProduct = Joi.object({
  const salesProductValidation = Joi.array().items({
     productId: Joi.number().required(),
     quantity: Joi.number().min(1).required(),
@@ -33,8 +27,6 @@ const productValidation = Joi.object({
 
   module.exports = {
     idSchema,
-    // addRequestTravelSchema,
     productValidation,
-    // validSaleProduct,
     salesProductValidation,
   };
