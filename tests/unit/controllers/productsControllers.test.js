@@ -96,21 +96,21 @@ describe('Teste de unidade do passengerController', function () {
       expect(res.status).to.have.been.calledWith(200);
       expect(res.json).to.have.been.calledWith(returnUpdateProduct);
 
-    })
+  })
   
   
-    it("testando a função next quando ocore um erro ao atualizar um produto por id", async function () {
+  it("testando a função next quando ocore um erro ao atualizar um produto por id", async function () {
     const params = { id: 1 };
     const body = updateProduct;
     const req = { params, body };
-      const res = {};
-      res.status = sinon.stub().returns(res);
-      res.json = sinon.stub().returns();
-      const next = sinon.stub().returns();
-      const erro = { status: 404, message: "Product not found" };
-      sinon.stub(productServices, "updateProductId").throws(erro);
-      await productController.productUpdate(req, res, next);
-      expect(next).to.have.been.calledWith(erro);
-    });
+    const res = {};
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+    const next = sinon.stub().returns();
+    const erro = { status: 404, message: "Product not found" };
+    sinon.stub(productServices, "updateProductId").throws(erro);
+    await productController.productUpdate(req, res, next);
+    expect(next).to.have.been.calledWith(erro);
+  });
   
- })
+})

@@ -29,10 +29,19 @@ const updateProductId = async (ide, produto) => {
     return { status: 200, message: { id: ide, ...produto } };
 };
 
+const deleteProductId = async (id) => {
+  const result = await productModel.deleteProductId(id);
+  
+  if (result < 1) { 
+    const err = { status: 404, message: 'Product not found' };
+    throw err;
+  } 
+  return { status: 204 };
+};
 module.exports = {
-  //
   getAllProducts,
   findProductId,
   registrationProduct,
   updateProductId,
+  deleteProductId,
 };
