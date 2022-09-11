@@ -116,5 +116,81 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "6cdae483-fe78-4cbd-9c37-d58d52ff85b2",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/1",
+    "url": "http://localhost:3000/products/1",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-09-11T22:07:04.404Z",
+    "modified": "2022-09-11T22:18:31.879Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Martelo do Batman\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "5c97c43d-0951-4c33-97af-ee696351ef35",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/product/1",
+    "url": "http://localhost:3000/product/1",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-09-11T22:13:37.212Z",
+    "modified": "2022-09-11T22:13:37.251Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Martelo do Batman\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "ece74d94-78ba-455e-a377-66920b7600cf",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/2",
+    "url": "http://localhost:3000/products/2",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-09-11T22:19:37.177Z",
+    "modified": "2022-09-11T22:32:34.104Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Martelo do Batman\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "f7c1194b-da9e-462d-aa98-6c3c993c1a09",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/30",
+    "url": "http://localhost:3000/products/30",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-09-11T22:28:46.863Z",
+    "modified": "2022-09-11T22:28:46.892Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"name\": \"Martelo do Batman\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]

@@ -30,9 +30,20 @@ const registrationProduct = async (produto) => {
 
   return insertId;
 };
+const updateProductId = async (id, produto) => {
+  const [result] = await connection.execute(
+    `
+  UPDATE StoreManager.products
+  SET name = ?
+  WHERE id = ?`, [produto.name, id],
+  );
+
+  return result.affectedRows;
+};
 
 module.exports = {
   getProducts,
   findProductId,
   registrationProduct,
+  updateProductId,
 };

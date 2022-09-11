@@ -19,8 +19,20 @@ const registrationProduct = async (produto) => {
   return { status: 201, message: { id: result, ...produto } };
 };
 
-module.exports = { //
+const updateProductId = async (ide, produto) => {
+  const result = await productModel.updateProductId(ide, produto);
+
+  if (result < 1) {
+    const err = { status: 404, message: 'Product not found' };
+    throw err;
+  }
+    return { status: 200, message: { id: ide, ...produto } };
+};
+
+module.exports = {
+  //
   getAllProducts,
   findProductId,
   registrationProduct,
+  updateProductId,
 };
