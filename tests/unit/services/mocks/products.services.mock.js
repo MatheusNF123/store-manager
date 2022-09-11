@@ -15,8 +15,19 @@ const produto = {
   name: "ProdutoX",
 };
 
+const updateProduct = {
+  name: "Martelo do Batman",
+};
+
+const returnUpdateProduct = {
+  id: 1,
+  name: "Martelo do Batman",
+};
+
 module.exports = {
   allProduct,
   errorId,
   produto,
+  updateProduct,
+  returnUpdateProduct,
 };

@@ -11,6 +11,8 @@ const {
   allProduct,
   produtoRegistrado,
   produto,
+  returnUpdateProduct,
+  updateProduct
 } = require("./mocks/products.controller.mock");
 const {productController} = require('../../../src/controllers')
 describe('Teste de unidade do passengerController', function () {
@@ -74,10 +76,41 @@ describe('Teste de unidade do passengerController', function () {
          .stub(productServices, "registrationProduct")
          .resolves({ status: 201, message: produtoRegistrado });
          await productController.productRegistration(req, res);
-        //  const result = await productServices.registrationProduct(produto);
       expect(res.status).to.have.been.calledWith(201);
       expect(res.json).to.have.been.calledWith(produtoRegistrado);
 
   })
+
+    it('verificando se o produto foi atualizado', async function () {
+    const params = { id: 1 }
+    const body = updateProduct;
+      const req = { params, body };
+      const res = {};
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+    const next = sinon.stub().returns();
+       sinon
+         .stub(productServices, "updateProductId")
+         .resolves({ status: 200, message: returnUpdateProduct });
+         await productController.productUpdate(req, res, next);
+      expect(res.status).to.have.been.calledWith(200);
+      expect(res.json).to.have.been.calledWith(returnUpdateProduct);
+
+    })
+  
+  
+    it("testando a função next quando ocore um erro ao atualizar um produto por id", async function () {
+    const params = { id: 1 };
+    const body = updateProduct;
+    const req = { params, body };
+      const res = {};
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      const next = sinon.stub().returns();
+      const erro = { status: 404, message: "Product not found" };
+      sinon.stub(productServices, "updateProductId").throws(erro);
+      await productController.productUpdate(req, res, next);
+      expect(next).to.have.been.calledWith(erro);
+    });
   
  })

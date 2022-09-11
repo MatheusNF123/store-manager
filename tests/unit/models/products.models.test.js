@@ -9,6 +9,8 @@ const {
   allProduct,
   produtoRegistrado,
   produto,
+  updateProduct,
+  returnUpdateProduct
 } = require("./mocks/products.model.mock");
 
 describe('Teste de unidade do productModel', function () {
@@ -29,5 +31,10 @@ describe('Teste de unidade do productModel', function () {
     sinon.stub(connection, "execute").resolves([{insertId: 4}]);
     const result = await productModel.registrationProduct(produto);
     expect(result).to.equal(4);
+  })
+  it('Atualizando um produto', async function () {
+    sinon.stub(connection, "execute").resolves([{ affectedRows: 1 }]);
+    const result = await productModel.updateProductId(1, updateProduct);
+    expect(result).to.equal(1);
   })
  })

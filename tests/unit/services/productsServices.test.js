@@ -9,6 +9,7 @@ const {
   allProduct,
   errorId,
   produto,
+  updateProduct
 } = require("./mocks/products.services.mock");
 describe("Teste de unidade do productServices", function () {
   this.afterEach(function () {
@@ -49,5 +50,20 @@ describe("Teste de unidade do productServices", function () {
     const result =  await productServices.registrationProduct(produto);
     const mockObj = { status: 201, message: { id: 4, ...produto } };
     expect(result).to.deep.equal(mockObj);      
+  });
+  it("atualizando um produto", async function () {       
+    sinon.stub(productModel, "updateProductId").resolves(1);
+    const result = await productServices.updateProductId(1, updateProduct);
+    const mockObj = { status: 200, message: { id: 1, ...updateProduct } };
+    expect(mockObj).to.deep.equal(result);      
+  });
+  it("Se testando se ocorre um erro ao tentar atualizar um produto", async function () {   
+    try {
+      sinon.stub(productModel, "updateProductId").resolves(0);
+      await productServices.updateProductId(999, updateProduct);      
+    } catch (e) {
+      const errMock = { status: 404, message: "Product not found" };
+      expect(e).to.deep.equal(errMock);        
+    }
   });
 });
