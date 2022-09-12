@@ -6,12 +6,10 @@ const { expect } = chai
 
 const { salesModel } = require("../../../src/models");
 const {
-  mockSaleProduct,
   fCall,
   mockAllSales,
   mockSaleID,
   MockUpdataSalesById,
-  mockUpdateAllSales,
 } = require("./mocks/sales.model.mock");
 
 describe('Teste de unidade do salesModel', function () {

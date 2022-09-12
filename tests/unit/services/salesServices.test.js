@@ -6,7 +6,6 @@ const { saleServices } = require('../../../src/services')
 const { salesModel, productModel } = require("../../../src/models");
 const {
   fCall,
-  mockSaleProduct,
   fCallError,
   mockAllSales,
   mockSaleID,

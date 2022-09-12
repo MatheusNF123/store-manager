@@ -8,14 +8,14 @@ const validateRegistrationsale = (req, _res, next) => {
   if (error && error.details[0].type === 'number.min') {
      const err = {
        status: 422,
-       message: error.message.replace('[1].', '').replace('[0].', ''),
+       message: error.message,
      };
      throw err;
    }
   if (error) {
     const err = {
       status: 400,
-      message: error.message.replace('[1].', '').replace('[0].', ''),
+      message: error.message,
     };
     throw err;
   }  

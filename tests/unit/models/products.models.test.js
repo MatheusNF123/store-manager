@@ -7,10 +7,8 @@ const { expect } = chai
 const { productModel } = require("../../../src/models");
 const {
   allProduct,
-  produtoRegistrado,
   produto,
   updateProduct,
-  returnUpdateProduct
 } = require("./mocks/products.model.mock");
 
 describe('Teste de unidade do productModel', function () {

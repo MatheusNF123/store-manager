@@ -10,7 +10,6 @@ const { productServices } = require("../../../src/services");
 const {
   allProduct,
   produtoRegistrado,
-  produto,
   returnUpdateProduct,
   updateProduct,
   returnAllSearch,
