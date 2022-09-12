@@ -5,7 +5,14 @@ const connection = require('../../../src/models/connection')
 const { expect } = chai
 
 const { salesModel } = require("../../../src/models");
-const {mockSaleProduct, fCall, mockAllSales, mockSaleID} = require('./mocks/sales.model.mock')
+const {
+  mockSaleProduct,
+  fCall,
+  mockAllSales,
+  mockSaleID,
+  MockUpdataSalesById,
+  mockUpdateAllSales,
+} = require("./mocks/sales.model.mock");
 
 describe('Teste de unidade do salesModel', function () {
   afterEach(function () {
@@ -40,6 +47,11 @@ describe('Teste de unidade do salesModel', function () {
      sinon.stub(connection, "execute").resolves([{ affectedRows: 1 }]);
      const result = await salesModel.deleteSaleId(1);
      expect(result).to.equal(1);
+   });
+   it("testando se a função atualiza o banco de dados", async function () {
+     sinon.stub(connection, "execute").resolves([{ affectedRows: 2 }]);
+    const result = await salesModel.updateSaleId(1, MockUpdataSalesById); 
+     expect(result).to.equal(2);
    });
 
  })

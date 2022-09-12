@@ -4,7 +4,17 @@ const { expect } = chai;
 
 const { saleServices } = require('../../../src/services')
 const { salesModel, productModel } = require("../../../src/models");
-const {fCall, mockSaleProduct, fCallError, mockAllSales, mockSaleID } = require("./mocks/sales.services.mock");
+const {
+  fCall,
+  mockSaleProduct,
+  fCallError,
+  mockAllSales,
+  mockSaleID,
+  MockUpdataSalesById,
+} = require("./mocks/sales.services.mock");
+
+const valid = require("../../../src/middlewares/validationsSales");
+
 describe("Teste de unidade do saleServices", function () {
   afterEach(function () {
     sinon.restore();
@@ -78,6 +88,25 @@ describe("Teste de unidade do saleServices", function () {
        const errMock = { status: 404, message: "Sale not found" };
        expect(e).to.deep.equal(errMock);
      }
+   });
+   it("Testando se a função devolve um objeto com status 200", async function () {
+    
+     sinon
+       .stub(salesModel, "findSaleId")
+       .resolves({ status: 200, message: MockUpdataSalesById });
+     await salesModel.findSaleId(1)
+     sinon.stub(productModel, "findProductId").resolves([2,1]);
+     
+       await valid.validationFindProductYbId([mockSaleID]);
+       sinon.stub(salesModel, "updateSaleId").resolves();
+      const res = await saleServices.updateSaleId(1, MockUpdataSalesById);
+      const mockResult = {
+        status: 200,
+        message: { saleId: 1, itemsUpdated: [...MockUpdataSalesById] },
+      };
+   
+       expect(mockResult).to.deep.equal(res);
+     
    });
   
   

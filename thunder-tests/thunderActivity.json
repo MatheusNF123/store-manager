@@ -220,5 +220,24 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "911fb112-a1ae-49bd-94cd-7ed8323c4047",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/sales/1",
+    "url": "http://localhost:3000/sales/1",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2022-09-12T01:18:42.475Z",
+    "modified": "2022-09-12T13:16:19.566Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 10\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 50\n  }\n]",
+      "form": []
+    },
+    "tests": []
   }
 ]

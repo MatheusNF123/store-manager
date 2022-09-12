@@ -56,6 +56,21 @@ const deleteSaleId = async (id) => {
   return affectedRows;
 };
 
+const updateSaleId = async (id, produto) => {
+  const [[{ affectedRows }]] = await Promise.all(
+    produto.map((el) =>
+      connection.execute(
+        `
+  UPDATE StoreManager.sales_products
+  SET quantity = ?
+  WHERE product_id = ? and sale_id = ? `,
+        [el.quantity, el.productId, id],
+      )),
+  );
+  
+   return affectedRows;
+};
+
 module.exports = {
   registrationSaleProduct,
   registrationSale,
@@ -63,4 +78,5 @@ module.exports = {
   getAllSales,
   findSaleId,
   deleteSaleId,
+  updateSaleId,
 };

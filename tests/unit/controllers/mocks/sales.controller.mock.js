@@ -69,6 +69,30 @@ const mockSaleID = [
   },
 ];
 
+const mockUpdateSale = [
+  {
+    productId: 1,
+    quantity: 10,
+  },
+  {
+    productId: 2,
+    quantity: 50,
+  },
+];
+
+const mockUpdateASalesResolved = {
+  saleId: "1",
+  itemsUpdated: [
+    {
+      productId: 1,
+      quantity: 10,
+    },
+    {
+      productId: 2,
+      quantity: 50,
+    },
+  ],
+};
 
 module.exports = {
   mockSaleProduct,
@@ -77,6 +101,8 @@ module.exports = {
   fCallError,
   mockAllSales,
   mockSaleID,
+  mockUpdateSale,
+  mockUpdateASalesResolved,
 };
 
 

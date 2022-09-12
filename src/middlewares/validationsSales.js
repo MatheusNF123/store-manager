@@ -1,5 +1,6 @@
 // const productModel = require('../../models/index');
 const { salesProductValidation } = require('./validations/schemas');
+const { productModel } = require('../models');
 
 const validateRegistrationsale = (req, _res, next) => {
   const produto = req.body;
@@ -18,9 +19,23 @@ const validateRegistrationsale = (req, _res, next) => {
     };
     throw err;
   }  
+
   next();
+};
+
+const validationFindProductYbId = async (produto) => {
+  const arrayProd = await Promise.all(
+     produto.map((el) => productModel.findProductId(el.productId)),
+   );
+  
+  const exist = arrayProd.some((el) => el === undefined);
+  if (exist) {
+    const err = { status: 404, message: 'Product not found' };
+    throw err;
+  }
 };
 
 module.exports = {
   validateRegistrationsale,
+  validationFindProductYbId,
 };

@@ -69,6 +69,42 @@ const mockSaleID = [
   },
 ];
 
+
+const MockUpdataSalesById = [
+  {
+    productId: 1,
+    quantity: 10,
+  },
+  {
+    productId: 2,
+    quantity: 50,
+  },
+];
+
+const mockUpdateAllSales = [
+  {
+    saleId: 1,
+    date: "2022-09-11T13:36:16.000Z",
+    productId: 1,
+    quantity: 10,
+  },
+  {
+    saleId: 1,
+    date: "2022-09-11T13:36:16.000Z",
+    productId: 2,
+    quantity: 50,
+  },
+  {
+    saleId: 2,
+    date: "2022-09-11T13:36:16.000Z",
+    productId: 3,
+    quantity: 15,
+    
+  },
+];
+
+
+
 module.exports = {
   mockSaleProduct,
   mockResolvedSale,
@@ -76,4 +112,6 @@ module.exports = {
   sCall,
   mockAllSales,
   mockSaleID,
+  MockUpdataSalesById,
+  mockUpdateAllSales,
 };

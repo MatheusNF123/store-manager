@@ -11,7 +11,9 @@ const {
   mockResolvedSale,
   mockSaleProduct,
   mockAllSales,
-  mockSaleID
+  mockSaleID,
+  mockUpdateSale,
+  mockUpdateASalesResolved
 } = require("./mocks/sales.controller.mock");
 const {salesController} = require('../../../src/controllers')
 describe('Teste de unidade do passengerController', function () {
@@ -106,5 +108,34 @@ describe('Teste de unidade do passengerController', function () {
     await salesController.deleteSale(req, res, next);
     expect(res.status).to.have.been.calledWith(204);
   });
+  it("testando se a função responde com status 200 em caso de sucesso ao atualizar uma venda e retorna para o usuario", async function () {
+    const params = { id: 1 };
+    const body = mockUpdateSale;
+    const req = { body, params };
+    const res = {};
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+    const next = sinon.stub().returns();
+    sinon
+      .stub(saleServices, "updateSaleId")
+      .resolves({ status: 200, message: mockUpdateASalesResolved });
+    await salesController.updateSale(req, res, next);
+    expect(res.status).to.have.been.calledWith(200);
+     expect(res.json).to.have.been.calledWith(mockUpdateASalesResolved);
+  });
+
+   it("testando o erro do next ao tentar atualizar uma venda por id ou produtoid errado", async function () {
+     const params = { id: 99999 };
+     const body = mockUpdateSale;
+     const req = { body, params };
+     const res = {};
+     res.status = sinon.stub().returns(res);
+     res.json = sinon.stub().returns();
+     const next = sinon.stub().returns();
+     const err = { status: 404, message: "Sale not found" };
+     sinon.stub(saleServices, "updateSaleId").throws(err);
+     await salesController.updateSale(req, res, next);
+     expect(next).to.have.been.calledWith(err);
+   });
  
  })

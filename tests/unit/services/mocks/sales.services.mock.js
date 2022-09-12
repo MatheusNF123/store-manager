@@ -77,6 +77,19 @@ const mockSaleID = [
 
 
 
+const MockUpdataSalesById = [
+  {
+    productId: 1,
+    quantity: 10,
+  },
+  {
+    productId: 2,
+    quantity: 50,
+  },
+];
+
+
+
 module.exports = {
   mockSaleProduct,
   mockResolvedSale,
@@ -85,4 +98,5 @@ module.exports = {
   fCallError,
   mockAllSales,
   mockSaleID,
+  MockUpdataSalesById,
 };
