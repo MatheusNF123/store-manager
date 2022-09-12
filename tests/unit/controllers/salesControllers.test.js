@@ -93,6 +93,18 @@ describe('Teste de unidade do passengerController', function () {
       sinon.stub(saleServices, "findSaleId").throws(err);
       await salesController.saleId(req, res, next);
       expect(next).to.have.been.calledWith(err);
-    });
+  });
+  
+  it("testando se a função responde com status 204 em caso de sucesso ao deletar uma venda", async function () {
+    const params = { id: 1 };
+    const req = { params };
+    const res = {};
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+    const next = sinon.stub().returns();
+    sinon.stub(saleServices, "deleteSaleId").resolves({ status: 204 });
+    await salesController.deleteSale(req, res, next);
+    expect(res.status).to.have.been.calledWith(204);
+  });
  
  })

@@ -36,4 +36,10 @@ describe('Teste de unidade do salesModel', function () {
     expect(mockSaleID).to.deep.equal(result);
   });
 
+   it("Deleta um produto", async function () {
+     sinon.stub(connection, "execute").resolves([{ affectedRows: 1 }]);
+     const result = await salesModel.deleteSaleId(1);
+     expect(result).to.equal(1);
+   });
+
  })

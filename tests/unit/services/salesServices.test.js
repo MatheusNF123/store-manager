@@ -62,6 +62,22 @@ describe("Teste de unidade do saleServices", function () {
       expect(e.message).to.deep.equal(salesMocks.message);
       
     }
+  });
+  
+   it("Testando se a função devolve um objeto de sucesso com status 204 em caso de sucesso", async function () {
+     sinon.stub(salesModel, "deleteSaleId").resolves(1);
+     const result = await saleServices.deleteSaleId(1);
+
+     expect(result.status).to.equal(204);
+   });
+   it("Testando se a função devolve um objeto de erro em caso de error", async function () {
+     try {
+       sinon.stub(salesModel, "deleteSaleId").resolves(0);
+       await saleServices.deleteSaleId(999);
+     } catch (e) {
+       const errMock = { status: 404, message: "Sale not found" };
+       expect(e).to.deep.equal(errMock);
+     }
    });
   
   

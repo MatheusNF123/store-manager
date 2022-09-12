@@ -112,7 +112,7 @@ describe('Teste de unidade do passengerController', function () {
     await productController.productUpdate(req, res, next);
     expect(next).to.have.been.calledWith(erro);
   });
-  it("testando se a função responde com status 204 em caso de sucesso", async function () {
+  it("testando se a função responde com status 204 em caso de sucesso ao deletar um produto", async function () {
     const params = { id: 1 };
     const req = { params};
     const res = {};
