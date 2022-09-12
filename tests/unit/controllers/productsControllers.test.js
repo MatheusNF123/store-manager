@@ -112,5 +112,16 @@ describe('Teste de unidade do passengerController', function () {
     await productController.productUpdate(req, res, next);
     expect(next).to.have.been.calledWith(erro);
   });
+  it("testando se a função responde com status 204 em caso de sucesso", async function () {
+    const params = { id: 1 };
+    const req = { params};
+    const res = {};
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+    const next = sinon.stub().returns();
+    sinon.stub(productServices, "deleteProductId").resolves({status: 204});
+    await productController.productDelete(req, res, next);
+    expect(res.status).to.have.been.calledWith(204);
+  });
   
 })
