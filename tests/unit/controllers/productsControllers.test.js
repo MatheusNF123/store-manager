@@ -12,7 +12,9 @@ const {
   produtoRegistrado,
   produto,
   returnUpdateProduct,
-  updateProduct
+  updateProduct,
+  returnAllSearch,
+  returnOneSearch
 } = require("./mocks/products.controller.mock");
 const {productController} = require('../../../src/controllers')
 describe('Teste de unidade do passengerController', function () {
@@ -123,5 +125,32 @@ describe('Teste de unidade do passengerController', function () {
     await productController.productDelete(req, res, next);
     expect(res.status).to.have.been.calledWith(204);
   });
+
+   it("testando se retorna todos os produtos caso a query nao seja passada", async function () {
+     const query = { q: '' };
+     const req = { query};
+     const res = {};
+     res.status = sinon.stub().returns(res);
+     res.json = sinon.stub().returns();
+     const next = sinon.stub().returns();
+     sinon.stub(productServices, "getProductSearch").resolves({ status: 200, message: returnAllSearch });
+     await productController.productSeach(req, res, next);
+     expect(res.status).to.have.been.calledWith(200);
+     expect(res.json).to.have.been.calledWith(returnAllSearch);
+   });
+   it("testando se retorna o produto quer for passado na query", async function () {
+     const query = { q: 'Martelo' };
+     const req = { query};
+     const res = {};
+     res.status = sinon.stub().returns(res);
+     res.json = sinon.stub().returns();
+     const next = sinon.stub().returns();
+     sinon
+       .stub(productServices, "getProductSearch")
+       .resolves({ status: 200, message: returnOneSearch });
+     await productController.productSeach(req, res, next);
+     expect(res.status).to.have.been.calledWith(200);
+     expect(res.json).to.have.been.calledWith(returnOneSearch);
+   });
   
 })

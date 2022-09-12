@@ -9,7 +9,9 @@ const {
   allProduct,
   errorId,
   produto,
-  updateProduct
+  updateProduct,
+  mockSearch,
+  mockAllSearch
 } = require("./mocks/products.services.mock");
 describe("Teste de unidade do productServices", function () {
   this.afterEach(function () {
@@ -83,6 +85,21 @@ describe("Teste de unidade do productServices", function () {
        expect(e).to.deep.equal(errMock);  
     }              
     
+  });
+  it("Testando se a função devolve um objeto com status 200 e o item procurado", async function () {   
+    sinon.stub(productModel, "getProducts").resolves(mockAllSearch);
+    const result = await productServices.getProductSearch('Martelo');        
+    expect({ status: 200, message: mockSearch }).to.deep.equal(result);     
+  });
+  it("Testando se a função devolve um objeto com status 200 e todos os produtos caso a query nao seja passada", async function () {   
+    sinon.stub(productModel, "getProducts").resolves(mockAllSearch);
+    const result = await productServices.getProductSearch('');        
+    expect({ status: 200, message: mockAllSearch }).to.deep.equal(result);     
+  });
+  it("Testando se a função devolve um objeto com status 200 e caso nenhum nome exista no banco de dados", async function () {   
+    sinon.stub(productModel, "getProducts").resolves(mockAllSearch);
+    const result = await productServices.getProductSearch('asdasdasdasd');        
+    expect({ status: 200, message: [] }).to.deep.equal(result);     
   });
 
 

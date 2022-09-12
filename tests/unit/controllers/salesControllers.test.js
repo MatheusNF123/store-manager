@@ -137,5 +137,6 @@ describe('Teste de unidade do passengerController', function () {
      await salesController.updateSale(req, res, next);
      expect(next).to.have.been.calledWith(err);
    });
+  
  
  })

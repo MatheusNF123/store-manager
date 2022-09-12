@@ -53,10 +53,18 @@ const deleteProductId = async (id) => {
   return affectedRows;
 };
 
+// const getProductSearch = async (query) => {
+//   const [result] = await connection.execute(`
+//   SELECT * FROM StoreManager.products where name = ?`, [query]);
+
+//   return result;
+// };
+
 module.exports = {
   getProducts,
   findProductId,
   registrationProduct,
   updateProductId,
   deleteProductId,
+  // getProductSearch,
 };

@@ -41,7 +41,13 @@ const productDelete = async (req, res, next) => {
   } catch (e) {
     next(e);
   }
-  };
+};
+  
+const productSeach = async (req, res, _next) => {
+    const { q } = req.query;   
+    const { status, message } = await productServices.getProductSearch(q);
+    res.status(status).json(message);
+};
 
 module.exports = {
   product,
@@ -49,4 +55,5 @@ module.exports = {
   productRegistration,
   productUpdate,
   productDelete,
+  productSeach,
 };

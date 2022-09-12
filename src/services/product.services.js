@@ -38,10 +38,18 @@ const deleteProductId = async (id) => {
   } 
   return { status: 204 };
 };
+
+const getProductSearch = async (query) => {
+  const result = await productModel.getProducts();
+  const produtos = result.filter((el) => el.name.includes(query));
+  return { status: 200, message: produtos };
+};
+
 module.exports = {
   getAllProducts,
   findProductId,
   registrationProduct,
   updateProductId,
   deleteProductId,
+  getProductSearch,
 };

@@ -4,6 +4,7 @@ const { validateRegistrationProduct } = require('../middlewares/validationsInput
 
 const router = express.Router();
 
+router.get('/search', productController.productSeach);
 router.get('/', productController.product);
 router.get('/:id', productController.productId);
 router.post('/', validateRegistrationProduct, productController.productRegistration);

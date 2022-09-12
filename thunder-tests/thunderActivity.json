@@ -239,5 +239,99 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "e4145452-577e-483e-8b66-6718cf7d7eb1",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/q=Martelo",
+    "url": "http://localhost:3000/products/q=Martelo",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-12T15:27:35.939Z",
+    "modified": "2022-09-12T15:27:35.986Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "e490b192-2e0a-4a6b-bee1-25c2e9f7638d",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/search?q=Martelo",
+    "url": "http://localhost:3000/products/search?q=Martelo",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-12T15:28:10.245Z",
+    "modified": "2022-09-12T16:17:19.715Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "Martelo",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "abb4d17f-624d-4e02-8d45-ad389c417f23",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/search?q=",
+    "url": "http://localhost:3000/products/search?q=",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-12T16:02:40.736Z",
+    "modified": "2022-09-12T17:10:01.225Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "26eb4a39-275c-4902-b714-6c978b8789d3",
+    "colId": "history",
+    "containerId": "",
+    "name": "dhttp://localhost:3000/products/search?q=as",
+    "url": "dhttp://localhost:3000/products/search?q=as",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-12T16:19:32.255Z",
+    "modified": "2022-09-12T16:19:32.260Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "as",
+        "isPath": false
+      }
+    ],
+    "tests": []
+  },
+  {
+    "_id": "a34f3ad9-0c9c-475a-a452-74020545482d",
+    "colId": "history",
+    "containerId": "",
+    "name": "http://localhost:3000/products/search?q=asd",
+    "url": "http://localhost:3000/products/search?q=asd",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2022-09-12T16:19:37.597Z",
+    "modified": "2022-09-12T16:19:37.635Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "q",
+        "value": "asd",
+        "isPath": false
+      }
+    ],
+    "tests": []
   }
 ]
