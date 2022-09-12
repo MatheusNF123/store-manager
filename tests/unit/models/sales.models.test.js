@@ -19,12 +19,12 @@ describe('Teste de unidade do salesModel', function () {
     sinon.restore()
   })
   it("inseriando um sale com sales.getAllSalesProducts e sales.registrationSaleProduct", async function () {
-    sinon.stub(connection, "execute").resolves([mockSaleProduct[0]]);
+    sinon.stub(connection, "execute").resolves([{affectedRows: 1}]);
 
-    await salesModel.registrationSaleProduct(1, fCall);
-    const result = await salesModel.getAllSalesProducts();
+  const rows = await salesModel.registrationSaleProduct(1, fCall);
+ 
 
-    expect([result]).to.deep.equals(fCall);
+    expect(rows).to.deep.equals(1);
   });
   it('inseriando um sale com sales.registrationSale', async function () {
     sinon.stub(connection, "execute").resolves([{insertId: 1}]);

@@ -33,7 +33,7 @@ describe("Teste de unidade do saleServices", function () {
   it("tantando cadastrar uma venda com id errado", async function () {
     try {
       sinon.stub(productModel, "findProductId").resolves(undefined);
-      const a = await saleServices.registrationSale([fCallError]);  
+      await saleServices.registrationSale([fCallError]);  
     } catch (e) {
        const mockError = { status: 404, message: "Product not found" };
        expect(mockError.message).to.deep.equal(e.message);

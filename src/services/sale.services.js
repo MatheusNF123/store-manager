@@ -1,19 +1,23 @@
-const { salesModel, productModel } = require('../models');
+const { salesModel } = require('../models');
 // const { productValidation } = require('./validations/schemas');
 // const { validateParams } = require('./validations/validationsInputValues');
 const valid = require('../middlewares/validationsSales');
 
 const registrationSale = async (produto) => {
-  const arrayProd = await Promise.all(produto.map((el) =>
-    (productModel.findProductId(el.productId))));
+  await valid.validationFindProductYbId(produto);
+  // const arrayProd = await Promise.all(produto.map((el) =>
+  //   (productModel.findProductId(el.productId))));
   
-  const exist = arrayProd.some((el) => el === undefined);
-  if (exist) {
-    const mockError = { status: 404, message: 'Product not found' };
-    throw mockError;
-  }
+  // const exist = arrayProd.some((el) => el === undefined);
+  // if (exist) {
+  //   const mockError = { status: 404, message: 'Product not found' };
+  //   throw mockError;
+  // }
   const result = await salesModel.registrationSale();
-  await salesModel.registrationSaleProduct(result, produto);
+  produto.forEach(async (el) => {
+  await salesModel.registrationSaleProduct(result, el);
+});
+
   const produtoRegistrado = { status: 201, message: { id: result, itemsSold: produto } };
   return produtoRegistrado;
 };
@@ -54,7 +58,7 @@ const updateSaleId = async (id, produto) => {
   //   const err = { status: 404, message: 'Product not found' };
   //   throw err;
   // }
-  await salesModel.updateSaleId(id, produto);
+  produto.forEach(async (el) => salesModel.updateSaleId(id, el));
 
     return { status: 200, message: { saleId: id, itemsUpdated: [...produto] } };
 };

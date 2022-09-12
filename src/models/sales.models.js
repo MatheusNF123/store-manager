@@ -1,11 +1,11 @@
 const camelize = require('camelize');
 const connection = require('./connection');
 
-const registrationSaleProduct = async (id, produto) => {
-  produto.forEach(async (el) => {
-  await connection.execute(`INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity)
+const registrationSaleProduct = async (id, el) => {
+  const [{ affectedRows }] = await connection.execute(`
+ INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity)
    VALUE (?, ?, ?)`, [id, el.productId, el.quantity]);
-  });
+  return affectedRows;
 };
 
 const registrationSale = async () => {
@@ -13,13 +13,6 @@ const registrationSale = async () => {
     'INSERT INTO StoreManager.sales () VALUE ()',
   );
   return insertId;
-};
-
-const getAllSalesProducts = async () => {
-  const [result] = await connection.execute(
-    'SELECT * StoreManager.sales_products',
-  );
-  return result;
 };
 
 const getAllSales = async () => {
@@ -56,16 +49,13 @@ const deleteSaleId = async (id) => {
   return affectedRows;
 };
 
-const updateSaleId = async (id, produto) => {
-  const [[{ affectedRows }]] = await Promise.all(
-    produto.map((el) =>
-      connection.execute(
-        `
-  UPDATE StoreManager.sales_products
+const updateSaleId = async (id, el) => {
+  const [{ affectedRows }] = await connection.execute(
+  `UPDATE StoreManager.sales_products
   SET quantity = ?
   WHERE product_id = ? and sale_id = ? `,
-        [el.quantity, el.productId, id],
-      )),
+  [el.quantity, el.productId, id],
+    
   );
   
    return affectedRows;
@@ -74,7 +64,6 @@ const updateSaleId = async (id, produto) => {
 module.exports = {
   registrationSaleProduct,
   registrationSale,
-  getAllSalesProducts,
   getAllSales,
   findSaleId,
   deleteSaleId,
