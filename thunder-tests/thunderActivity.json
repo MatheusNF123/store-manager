@@ -279,16 +279,16 @@
     "colId": "history",
     "containerId": "",
     "name": "http://localhost:3000/products/search?q=",
-    "url": "http://localhost:3000/products/search?q=",
+    "url": "http://localhost:3000/products/search?q=asdasdasdasd",
     "method": "GET",
     "sortNum": 0,
     "created": "2022-09-12T16:02:40.736Z",
-    "modified": "2022-09-12T17:10:01.225Z",
+    "modified": "2022-09-13T23:40:51.157Z",
     "headers": [],
     "params": [
       {
         "name": "q",
-        "value": "",
+        "value": "asdasdasdasd",
         "isPath": false
       }
     ],

@@ -9,6 +9,8 @@ const {
   allProduct,
   produto,
   updateProduct,
+  mockAllSearch,
+  mockSearch,
 } = require("./mocks/products.model.mock");
 
 describe('Teste de unidade do productModel', function () {
@@ -40,4 +42,21 @@ describe('Teste de unidade do productModel', function () {
     const result = await productModel.deleteProductId(1);
     expect(result).to.equal(1);
   })
+
+   it("Bucando todos os produtos caso não passe nenhum parametro na query", async function () {
+     sinon.stub(connection, "execute").resolves([mockAllSearch]);
+     const result = await productModel.getSearch("");
+     expect(result).to.equal(mockAllSearch);
+   });
+   it("Bucando o produto passado pela query", async function () {
+     sinon.stub(connection, "execute").resolves([mockSearch]);
+     const result = await productModel.getSearch("Martelo");
+     expect(result).to.deep.equal(mockSearch);
+   });
+   it("Devolver um array vazio caso o parametro passado pela query não exista", async function () {
+     sinon.stub(connection, "execute").resolves([[]]);
+     const result = await productModel.getSearch("asdasd");
+     console.log(result);
+     expect([]).to.deep.equal(result);
+   });
  })

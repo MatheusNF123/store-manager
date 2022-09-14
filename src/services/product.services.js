@@ -40,9 +40,9 @@ const deleteProductId = async (id) => {
 };
 
 const getProductSearch = async (query) => {
-  const result = await productModel.getProducts();
-  const produtos = result.filter((el) => el.name.includes(query));
-  return { status: 200, message: produtos };
+  const result = await productModel.getSearch(query);
+  // const produtos = result.filter((el) => el.name.includes(query));
+  return { status: 200, message: result };
 };
 
 module.exports = {
