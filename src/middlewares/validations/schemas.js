@@ -13,6 +13,7 @@ const productValidation = Joi.object({
 
  const salesProductValidation = Joi.array().items({
    productId: Joi.number().required().messages({
+     'number.required': 'productId must be a number',
      'any.required': '"productId" is required',
    }),
    quantity: Joi.number().min(1).required().messages({
