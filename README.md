@@ -35,3 +35,6 @@ npm run debug
 ```
 npm run test:mocha
 ```
+
+## Autor 
+-- [Matheus](https://github.com/MatheusNF123)
