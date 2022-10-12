@@ -1,6 +1,6 @@
 <h1>Store Manager</h1>
 
- <p>Uma Api de Sistema de gerenciamento de vendas no formato dropshipping desenvolvida em node-js, utilizando a arquitetura MSC (model-service-controller) e um banco de dados MySQL para gestão de dados. Nela em que é possível criar, visualizar, deletar e atualizar produtos e vendas.</p>
+ <p>Uma Api de Sistema de gerenciamento de vendas no formato dropshipping desenvolvida em node-js, utilizando a arquitetura MSC (model-service-controller) e um banco de dados MySQL para gestão de dados. Nela é possível criar, visualizar, deletar e atualizar produtos e vendas.</p>
  
  
 <h2> Imagens Exemplo </h2>
