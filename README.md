@@ -181,7 +181,6 @@ npm run test:mocha
 - [Express.js](https://expressjs.com/)
 - [MYSQL](https://www.mysqltutorial.org/)
 - [mysql2](https://www.npmjs.com/package/mysql2)
-- [Sequelize(ORM)](https://sequelize.org/)
 - [Docker](https://www.docker.com/)
 - [Joi](https://joi.dev/api/?v=17.6.1)
 - [Mocha](https://mochajs.org/)
